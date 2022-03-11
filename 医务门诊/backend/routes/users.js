@@ -5,7 +5,7 @@ const { signIn, signUp, findUser, findOne, editInfo, deleteInfo, registerInfo, f
 const { isAuth } = require('../middleware/isAuth')
 
 // 验证token
-router.get('/isAuth', isAuth)
+//router.get('/isAuth', isAuth)
 
 // 注册用户
 router.post('/signIn', signIn)
@@ -14,13 +14,13 @@ router.post('/signIn', signIn)
 router.post('/signUp', signUp)
 
 // 查询用户信息
-router.get('/findList', auth, findUser)
+router.get('/findList', findUser)
 
 // 获取某个用户的基本信息
-router.get('/findOne', auth, findOne)
+router.get('/findOne', findOne)
 
 // 获取某个用户的基本信息,根据id
-router.get('/findUserInfo', auth, findById)
+router.get('/findUserInfo', findById)
 
 // 修改某个用户的基本信息
 router.put('/editInfo', auth, editInfo)
