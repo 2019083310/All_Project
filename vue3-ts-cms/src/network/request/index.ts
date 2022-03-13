@@ -60,7 +60,6 @@ class lyRequest {
         }else{
           return data
         }
-        return data
       },
       (err) => {
         console.log('所有的实例都有的拦截器: 响应失败拦截')
@@ -74,7 +73,7 @@ class lyRequest {
     )
   }
 
-  request(config: LYRequestConfig){
+  request<T>(config: LYRequestConfig<T>):Promise<T>{
     return new Promise((resolve, reject) => {
       // 单个请求对config处理
       if (config.interceptors?.requestInterceptor) {
@@ -86,7 +85,7 @@ class lyRequest {
         this.showLoading = config.showLoading
       }
 
-     this.instance.request(config).then((res) => {
+     this.instance.request<any,T>(config).then((res) => {
         // 对单个请求的数据处理
         if (config.interceptors?.responseInterceptor) {
           res = config.interceptors.responseInterceptor(res)
@@ -103,6 +102,22 @@ class lyRequest {
         return err
       })
     })
+  }
+
+  get<T>(config:LYRequestConfig<T>):Promise<T>{
+    return this.request<T>({...config,method:'GET'})
+  }
+
+  post<T>(config:LYRequestConfig<T>):Promise<T>{
+    return this.request<T>({...config,method:'POST'})
+  }
+
+  put<T>(config:LYRequestConfig<T>):Promise<T>{
+    return this.request<T>({...config,method:'PUT'})
+  }
+
+  delete<T>(config:LYRequestConfig<T>):Promise<T>{
+    return this.request<T>({...config,method:'DELETE'})
   }
 }
 

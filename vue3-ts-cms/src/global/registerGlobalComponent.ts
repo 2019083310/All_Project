@@ -1,11 +1,36 @@
 import 'element-plus/theme-chalk/base.css'
-import {ElButton,ElForm,ElAlert,ElAvatar,ElRadio,ElBreadcrumb} from 'element-plus'
-import {App} from 'vue'
+// 注册图标
+import * as ElIcons from '@element-plus/icons-vue'
+import {
+  ElButton,
+  ElForm,
+  ElFormItem,
+  ElBreadcrumb,
+  ElTabPane,
+  ElTabs,
+  ElCheckbox,
+  ElLink,
+  ElInput
+} from 'element-plus'
+import { App } from 'vue'
 
-const components=[ElAlert,ElBreadcrumb,ElButton,ElRadio,ElAvatar,ElForm]
+const components = [
+  ElBreadcrumb,
+  ElButton,
+  ElFormItem,
+  ElForm,
+  ElTabPane,
+  ElTabs,
+  ElCheckbox,
+  ElLink,
+  ElInput
+]
 
-export function registerGlobalComponent(app:App){
-  for(const component of components){
-    app.component(component.name,component)
+export function registerGlobalComponent(app: App) {
+  for (const component of components) {
+    app.component(component.name, component)
+  }
+  for (const name in ElIcons){
+    app.component(name,(ElIcons as any)[name])
   }
 }

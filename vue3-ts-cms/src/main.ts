@@ -3,9 +3,13 @@ import router from './router'
 import store from './store'
 import App from './App.vue'
 
+// 引入全局适配样式
+import 'normalize.css'
+import './assets/css/index.less'
+
 // axios的数据参数测试
 // import './network/request/axios-demo'
-import  lyRequest from './network/index'
+// import  lyRequest from './network/index'
 
 // element-plus的全局引入
 // import ElementPlus from 'element-plus'
@@ -34,26 +38,25 @@ app.mount('#app')
 // console.log(process.env.VUE_APP_PERSON);
 // console.log(process.env.NODE_ENV);
 
-lyRequest.request({
-  url:'/home/multidata',
-  method:'GET',
-  headers:{
-    'X-Access-Token':''
-  },
-  interceptors:{
-    requestInterceptor:(config)=>{
-      console.log('单独请求的config')
-      // config.headers['X-Access-Token']='123'
-      return config
-    },
-    responseInterceptor:(err)=>{
-      console.log('单独请求的response')
-      return err
-    }
-  },
-  showLoading:true
-}).then((res)=>{
-  console.log(res)
-})
+// lyRequest.request({
+//   url:'/home/multidata',
+//   method:'GET',
+//   headers:{
+//   },
+//   interceptors:{
+//     requestInterceptor:(config:LYRequestConfig)=>{
+//       console.log('单独请求的config')
+
+//       return config
+//     },
+//     responseInterceptor:(err)=>{
+//       console.log('单独请求的response')
+//       return err
+//     }
+//   },
+//   showLoading:true
+// }).then((res)=>{
+//   console.log(res)
+// })
 
 
