@@ -19,6 +19,9 @@ import './assets/css/index.less'
 // element-plus按需引入
 import {registerGlobal} from './global/index'
 
+// 我们的vuex是保存在内存当中的,当我们刷新页面，vuex的内的东西会丢失
+import {setupStore} from './store/index'
+
 const app=createApp(App)
 
 app.use(registerGlobal)
@@ -26,6 +29,7 @@ app.use(registerGlobal)
 app.use(router)
 app.use(store)
 app.mount('#app')
+setupStore()
 
 
 //这个process.env表示当前运行的环境是development

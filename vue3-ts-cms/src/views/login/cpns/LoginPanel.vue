@@ -1,8 +1,8 @@
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" class="demo-tabs" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" class="demo-tabs" stretch v-model='currentTab'>
+      <el-tab-pane name='account'>
         <template #label>
           <span class="custom-tabs-label">
             <el-icon>
@@ -13,14 +13,14 @@
         </template>
         <login-account ref="accountRef"></login-account>
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name='phone'>
         <template #label>
           <span class="custom-tabs-label">
             <el-icon><iphone /></el-icon>
             <span>手机号登录</span>
           </span>
         </template>
-        <login-phone></login-phone>
+        <login-phone ref='phoneRef'></login-phone>
       </el-tab-pane>
     </el-tabs>
     <div class="account-control">
@@ -42,12 +42,19 @@ export default defineComponent({
     LoginPhone,
   },
   setup() {
-    const isKeepPassword = ref(true);
-
+    // 定义属性
+    const isKeepPassword = ref(true)
     const accountRef=ref<InstanceType<typeof LoginAccount>>()
+    const phoneRef=ref<InstanceType<typeof LoginPhone>>()
+    const currentTab=ref('account')
 
+    // 定义方法
     const handleBtnClick = () => {
-      accountRef.value?.loginAction()
+      if(currentTab.value==='account'){
+        accountRef.value?.loginAction(isKeepPassword.value)
+      }else{
+        console.log('调用PhoneRef的LoginAction')
+      }
     };
 
     // 通过ref是可以拿到子组件的，就可以访问子组件setup返回给我们的属性和方法
@@ -57,7 +64,9 @@ export default defineComponent({
     return {
       handleBtnClick,
       isKeepPassword,
-      accountRef
+      accountRef,
+      phoneRef,
+      currentTab
     };
   },
 });
