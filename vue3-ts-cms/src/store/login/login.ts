@@ -7,6 +7,8 @@ import {ILoginState} from './type'
 import { loginAccountRequest } from '@/network/login/login'
 import router from '@/router'
 
+import {MapMenusToRoutes} from '../../utils/mapRouter'
+
 export const loginModule:Module<ILoginState,IRootState>={
   namespaced:true,
   state(){
@@ -54,7 +56,7 @@ export const loginModule:Module<ILoginState,IRootState>={
       localCache.setCache('userMenus',userMenus)
 
       // 4.跳到首页
-      router.push('/home')
+      router.push('/main')
     },
     loadLocalLogin({commit}){
       const token=localCache.getCache('token')
@@ -80,6 +82,14 @@ export const loginModule:Module<ILoginState,IRootState>={
     },
     changeUserMenus(state,payLoad){
       state.userMenus=payLoad
+
+      // 动态注册路由
+      const routes=MapMenusToRoutes(payLoad)
+
+      // 动态添加路由
+      routes.forEach(route=>{
+        router.addRoute('main',route)
+      })
     }
   }
 }

@@ -1,17 +1,25 @@
 import {createRouter,createWebHistory} from 'vue-router'
+import {firstRoute} from '../utils/mapRouter'
 
 const routes=[
   {
     path:'/',
-    redirect:'/login'
+    redirect:'/main'
   },
   {
     path:'/login',
+    name:"login",
     component:()=>import('../views/login/Login.vue')
   },
   {
-    path:'/home',
-    component:()=>import('../views/home/Home.vue')
+    path:'/main',
+    name:"main",
+    component:()=>import('../views/main/Main.vue')
+  },
+  {
+    path:'/:pathMatch(.*)*',
+    name:'notFound',
+    component:()=>import('../views/NotFound/NotFound.vue')
   }
 ]
 
@@ -26,7 +34,12 @@ router.beforeEach((to,from)=>{
     if(!token){
       return '/login'
     }
+    if(to.path==='/main'){
+      return firstRoute?.path
+    }
   }
+
+
 })
 
 export default router

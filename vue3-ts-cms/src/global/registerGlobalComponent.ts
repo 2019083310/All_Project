@@ -10,7 +10,10 @@ import {
   ElTabs,
   ElCheckbox,
   ElLink,
-  ElInput
+  ElInput,
+  ElMenu,
+  ElMenuItem,
+  ElSubMenu
 } from 'element-plus'
 import { App } from 'vue'
 
@@ -23,7 +26,10 @@ const components = [
   ElTabs,
   ElCheckbox,
   ElLink,
-  ElInput
+  ElInput,
+  ElSubMenu,
+  ElMenu,
+  ElMenuItem
 ]
 
 export function registerGlobalComponent(app: App) {
