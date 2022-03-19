@@ -1,0 +1,47 @@
+import type {IForm} from '../../../../../base-ui/form/types'
+export const searchFormConfig:IForm={
+  labelWidth:'120px',
+  itemLayout:{
+    padding:'10px 40px'
+  },
+  formItems:[
+    {
+      field:'name',
+      type:'input',
+      label:'姓名',
+      placeholder:'请输入姓名'
+    },
+    {
+      field:'password',
+      type:'password',
+      label:'密码',
+      placeholder:'请输入密码'
+    },
+    {
+      field:'gender',
+      type:'select',
+      label:'性别',
+      placeholder:'请选择性别',
+      options:[
+        {title:'男',value:'male'},
+        {title:'女',value:'female'}
+      ]
+    },
+    {
+      field:'age',
+      label:'年龄',
+      type:'input',
+      placeholder:"请输入年龄"
+    },
+    {
+      field:'createTime',
+      type:'datepicker',
+      label:'创建时间',
+      otherOptions:{
+        startPlaceholder:'开始时间',
+        endPlaceholder:'结束时间',
+        type:'daterange'
+      }
+    }
+  ]
+}

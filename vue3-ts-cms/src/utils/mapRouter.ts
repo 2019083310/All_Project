@@ -1,5 +1,6 @@
 import type {RouteRecordRaw} from 'vue-router'
-const path=require('path')
+
+import {IBreadCrumb} from '../base-ui/breadcrumb/type'
 
 export let firstMenu:any=undefined
 export let firstRoute:RouteRecordRaw|undefined=undefined
@@ -42,3 +43,42 @@ export function MapMenusToRoutes(userMenus:any[]):RouteRecordRaw[]{
 
   return routes
 }
+
+// 面包屑名字的动态获取
+export function pathToBreadCrumb(userMenus:any[],currentPath:string){
+  const breadcrumb:IBreadCrumb[]=[]
+  pathToMenu(userMenus,currentPath,breadcrumb)
+
+  return breadcrumb
+}
+
+export function pathToMenu(userMenus:any[],currentPath:string,breadcrumb?:IBreadCrumb[]):any{
+  for(const menu of userMenus){
+    if(menu.type===1){
+      const findMenu=pathToMenu(menu.children??[],currentPath)
+      if(findMenu){
+        breadcrumb?.push({name:menu.name})
+        breadcrumb?.push({name:findMenu.name})
+        return findMenu
+      }
+    }else if(menu.type===2&&menu.url===currentPath){
+      return menu
+    }
+  }
+}
+
+
+// 这个是用来对main重定向到那个页面所对应的左侧列表的选中
+// 以及对面包蟹的封装
+// export function pathToMenu(userMenus:any[],currentPath:string):any{
+//   for(const menu of userMenus){
+//     if(menu.type===1){
+//       const findMenu=pathToMenu(menu.children??[],currentPath)
+//       if(findMenu){
+//         return findMenu
+//       }
+//     }else if(menu.type===2&&menu.url===currentPath){
+//       return menu
+//     }
+//   }
+// }

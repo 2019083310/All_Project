@@ -13,23 +13,45 @@ import {
   ElInput,
   ElMenu,
   ElMenuItem,
-  ElSubMenu
+  ElSubMenu,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElCol,
+  ElRadio,
+  ElRow,
+  ElBreadcrumbItem
 } from 'element-plus'
 import { App } from 'vue'
 
 const components = [
-  ElBreadcrumb,
-  ElButton,
   ElFormItem,
   ElForm,
   ElTabPane,
   ElTabs,
   ElCheckbox,
   ElLink,
-  ElInput,
   ElSubMenu,
   ElMenu,
-  ElMenuItem
+  ElMenuItem,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElInput,
+  ElBreadcrumb,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElButton,
+  ElCol,
+  ElRow,
+  ElRadio,
+  ElBreadcrumbItem
 ]
 
 export function registerGlobalComponent(app: App) {

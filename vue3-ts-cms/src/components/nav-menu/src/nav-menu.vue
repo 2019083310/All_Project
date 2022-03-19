@@ -9,12 +9,18 @@
       background-color="#0c2135"
       active-text-color="#0a60bd"
       text-color="#b7bdc3"
+      :default-active="defaultValue"
+      :collapse="!collapse"
     >
       <!-- 二级菜单 -->
       <template v-for="item in menuList" :key="item.id">
         <template v-if="item.type === 1">
           <el-sub-menu :index="item.id + ''">
             <template #title>
+              <el-icon v-if='item.icon==="el-icon-monitor"'><platform /></el-icon>
+              <el-icon v-if='item.icon==="el-icon-setting"'><tools /></el-icon>
+              <el-icon v-if='item.icon==="el-icon-goods"'><goods-filled /></el-icon>
+              <el-icon v-if='item.icon==="el-icon-chat-line-round"'><chat-dot-square /></el-icon>
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subItem in item.children" :key="subItem.id">
@@ -37,33 +43,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
-import type { storeState } from "../../../store/type";
-import { useRouter } from "vue-router";
+import { defineComponent, computed ,ref} from "vue"
+import { useStore } from "vuex"
+import { useRouter ,useRoute} from "vue-router"
+
+import type { storeState } from "../../../store/type"
+
+import {pathToMenu} from '../../../utils/mapRouter'
 
 export default defineComponent({
   props: {
     collapse: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
-  setup(props) {
-    const store = useStore<storeState>();
-    const router = useRouter();
+  setup() {
+    // store
+    const store = useStore<storeState>()
 
-    const menuList = computed(() => store.state.loginModule.userMenus);
+    // router
+    const router = useRouter()
+    const route=useRoute()
 
+    // data
+    const menuList = computed(() => store.state.loginModule.userMenus)
+    const menu=pathToMenu(menuList.value,route.path)
+    const defaultValue=ref(menu.id+'')
+
+    // event handle
     const handleClick = (subItem: any) => {
       router.push({
-        path: subItem.url ?? ".notFound",
+        path: subItem.url ?? "/notFound",
       });
-    };
+    }
 
     return {
       menuList,
       handleClick,
+      defaultValue
     };
   },
 });
