@@ -28,9 +28,9 @@ export default defineComponent({
   setup() {
     const formData = ref({
       name: "",
-      password: "",
-      age: "",
-      gender: "",
+      realname: "",
+      phone: "",
+      status: "",
       createTime: "",
     });
 
@@ -42,8 +42,11 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.handle-btns{
+.header {
+  color: red;
+}
+.handle-btns {
   text-align: right;
-  padding:0 50px 20px 0;
+  padding: 0 50px 20px 0;
 }
 </style>

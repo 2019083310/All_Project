@@ -12,26 +12,25 @@ export const searchFormConfig:IForm={
       placeholder:'请输入姓名'
     },
     {
-      field:'password',
-      type:'password',
-      label:'密码',
-      placeholder:'请输入密码'
-    },
-    {
-      field:'gender',
-      type:'select',
-      label:'性别',
-      placeholder:'请选择性别',
-      options:[
-        {title:'男',value:'male'},
-        {title:'女',value:'female'}
-      ]
-    },
-    {
-      field:'age',
-      label:'年龄',
+      field:'realname',
       type:'input',
-      placeholder:"请输入年龄"
+      label:'真实姓名',
+      placeholder:'请输入真实姓名'
+    },
+    {
+      field:'phone',
+      label:'手机号码',
+      type:'input',
+      placeholder:"请输入手机号码"
+    },
+    {
+      field:'status',
+      type:'select',
+      label:'状态',
+      options:[
+        {title:'启用',value:'1'},
+        {title:'禁用',value:'0'}
+      ]
     },
     {
       field:'createTime',

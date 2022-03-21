@@ -40,7 +40,6 @@ app.use(router)
 // 挂载根组件
 app.mount('#app')
 
-
 //这个process.env表示当前运行的环境是development
 // 如果是Build则是production
 // 原理是通过webpack插件definePlugin集成设置的

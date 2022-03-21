@@ -7,34 +7,37 @@
       <!-- el-row el-col用来做栅格布局，响应式布局 -->
       <el-row>
         <template v-for="item in formItems" :keys="item.label">
-          <el-col v-bind='colLayout'>
-            <el-form-item
-            :label='item.label'
-            :rules='item.rules'
-            :style='itemStyle'>
-              <template v-if='item.type==="input"||item.type==="password"'>
+          <el-col v-bind="colLayout">
+            <el-form-item :label="item.label" :rules="item.rules" :style="itemStyle">
+              <template v-if="item.type === 'input' || item.type === 'password'">
                 <el-input
-                :placeholder='item.placeholder'
-                :show-password='item.type==="password"'
-                v-bind='item.otherOptions'
-                v-model="formData[`${item.field}`]"></el-input>
+                  :placeholder="item.placeholder"
+                  :show-password="item.type === 'password'"
+                  v-bind="item.otherOptions"
+                  v-model="formData[`${item.field}`]"
+                ></el-input>
               </template>
-              <template v-else-if='item.type==="select"'>
+              <template v-else-if="item.type === 'select'">
                 <el-select
-                :placeholder="placeholder"
-                 v-bind='item.otherOptions'
-                 style='width:100%;'
-                 v-model='formData[`${item.field}`]'>
-                  <el-option v-for='option in item.options' :key='option.value' :value='option.value'>
-                    {{option.title}}
+                  v-bind="item.otherOptions"
+                  style="width: 100%"
+                  v-model="formData[`${item.field}`]"
+                >
+                  <el-option
+                    v-for="option in item.options"
+                    :key="option.value"
+                    :value="option.value"
+                  >
+                    {{ option.title }}
                   </el-option>
                 </el-select>
               </template>
-              <template v-else-if='item.type==="datepicker"'>
-                <el-date-picker
-                v-bind='item.otherOptions'
-                style='width:100%'
-                 v-model='formData[`${item.field}`]'></el-date-picker>
+              <template v-else-if="item.type === 'datepicker'">
+                  <el-date-picker
+                    v-bind="item.otherOptions"
+                    style="width: 100%"
+                    v-model="formData[`${item.field}`]"
+                  ></el-date-picker>
               </template>
             </el-form-item>
           </el-col>
@@ -48,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref ,watch} from "vue";
+import { defineComponent, PropType, ref, watch } from "vue";
 import type { IFormItem } from "../types";
 
 export default defineComponent({
@@ -79,10 +82,10 @@ export default defineComponent({
         };
       },
     },
-    modelValue:{
-      type:Object,
-      required:true
-    }
+    modelValue: {
+      type: Object,
+      required: true,
+    },
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
@@ -91,23 +94,28 @@ export default defineComponent({
     // 方法2：computed()但是这样也相当于对moduleValue直接操作
     // 方法3：如下，用ref对moduleValue做一个浅拷贝，不影响父组件
     // console.log(props.modelValue)
-    const formData=ref({...props.modelValue})
+    const formData = ref({ ...props.modelValue });
 
-    watch(formData,(newValue)=>{
-      // console.log(newValue)
-      emit('update:modelValue',newValue)
-    },{
-      deep:true
-    })
+    watch(
+      formData,
+      (newValue) => {
+        // console.log(newValue)
+        emit("update:modelValue", newValue);
+      },
+      {
+        deep: true,
+      }
+    );
     return {
       formData
-    }
+    };
   },
 });
 </script>
 
-<style scoped lang='less'>
-.ly-form{
-  padding-top:22px;
+<style scoped lang="less">
+.ly-form {
+  padding-top: 22px;
+  background-color: #fff;
 }
 </style>
