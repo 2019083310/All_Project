@@ -8,8 +8,8 @@ export const searchFormConfig:IForm={
     {
       field:'name',
       type:'input',
-      label:'姓名',
-      placeholder:'请输入姓名'
+      label:'用户名',
+      placeholder:'请输入用户名'
     },
     {
       field:'realname',

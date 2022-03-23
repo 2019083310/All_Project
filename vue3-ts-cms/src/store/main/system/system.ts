@@ -10,7 +10,9 @@ export const systemModule:Module<ISystemState,IRootState>={
   state(){
     return {
       usersList:[],
-      usersCount:0
+      usersCount:0,
+      roleCount:0,
+      roleList:[]
     }
   },
   mutations:{
@@ -19,11 +21,17 @@ export const systemModule:Module<ISystemState,IRootState>={
     },
     changeUsersCount(state,payLoad:number){
       state.usersCount=payLoad
+    },
+    changeRoleList(state,payLoad:any[]){
+      state.roleList=payLoad
+    },
+    changeRoleCount(state,payLoad:number){
+      state.roleCount=payLoad
     }
   },
   actions:{
     // 发起网络请求，获取页面数据
-    async getPageListAction({commit},payLoad){
+    async getPageListAction({commit},payLoad:any){
       // 1.获取token
       const token=window.localStorage.getItem('token')
       let value
@@ -41,7 +49,9 @@ export const systemModule:Module<ISystemState,IRootState>={
         headers:{
           Authorization:`Bearer ${value}`
         },
-        data:payLoad.queryInfo
+        data:{
+          ...payLoad.queryInfo
+        }
       })
 
       // 4.存储数据到state中

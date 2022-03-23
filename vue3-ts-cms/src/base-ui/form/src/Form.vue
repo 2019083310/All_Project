@@ -14,14 +14,16 @@
                   :placeholder="item.placeholder"
                   :show-password="item.type === 'password'"
                   v-bind="item.otherOptions"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   v-bind="item.otherOptions"
                   style="width: 100%"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-option
                     v-for="option in item.options"
@@ -33,11 +35,12 @@
                 </el-select>
               </template>
               <template v-else-if="item.type === 'datepicker'">
-                  <el-date-picker
-                    v-bind="item.otherOptions"
-                    style="width: 100%"
-                    v-model="formData[`${item.field}`]"
-                  ></el-date-picker>
+                <el-date-picker
+                  v-bind="item.otherOptions"
+                  style="width: 100%"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
+                ></el-date-picker>
               </template>
             </el-form-item>
           </el-col>
@@ -94,20 +97,33 @@ export default defineComponent({
     // 方法2：computed()但是这样也相当于对moduleValue直接操作
     // 方法3：如下，用ref对moduleValue做一个浅拷贝，不影响父组件
     // console.log(props.modelValue)
-    const formData = ref({ ...props.modelValue });
+    // const formData = ref({ ...props.modelValue });
 
-    watch(
-      formData,
-      (newValue) => {
-        // console.log(newValue)
-        emit("update:modelValue", newValue);
-      },
-      {
-        deep: true,
-      }
-    );
+    // watch监听的是formData里面属性的值得变化,如果值变化，触发emit事件,父组件的update-modelValue事件出发
+    // 子组件把newValue=formData,把formData作为newValue赋值给父组件的formData完成双向绑定
+
+    // 现在我们要做的是点击重置按钮后表单双向绑定的值为空
+    // 对应父组件的前两种方法
+    // watch(
+    //   formData,
+    //   (newValue) => {
+    //     // console.log(newValue)
+    //     emit("update:modelValue", newValue);
+    //   },
+    //   {
+    //     deep: true,
+    //   }
+    // );
+
+    // 对应父组件的第三种方法
+    const handleValueChange=(value:any,field:string)=>{
+      // console.log(value)
+      emit('update:modelValue',{...props.modelValue,[field]:value})
+    }
+
     return {
-      formData
+      // formData,
+      handleValueChange
     };
   },
 });
