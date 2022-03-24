@@ -13,6 +13,7 @@
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      v-bind="childrenProps"
     >
       <el-table-column
         v-if="showSelectColumn"
@@ -30,7 +31,7 @@
       >
       </el-table-column>
       <template v-for="propItem in propList" :key="propItem.prop">
-        <el-table-column v-bind="propItem" align="center">
+        <el-table-column v-bind="propItem" align="center" show-overflow-tooltip>
           <template #default="scope">
             <slot :name="propItem.slotName" :row="scope.row">
               {{ scope.row[propItem.prop] }}
@@ -39,11 +40,18 @@
         </el-table-column>
       </template>
     </el-table>
-    <div class="footer">
+    <div class="footer" v-if="showFooter">
       <slot name="footer">
-        <!-- <el-pagination>
-
-        </el-pagination> -->
+        <el-pagination
+          :currentPage="page.currentPage"
+          :page-size="page.pageSize"
+          layout="total, sizes,prev, pager, next,jumper"
+          :total="listCount"
+          :page-sizes="[10, 20, 30]"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        >
+        </el-pagination>
       </slot>
     </div>
   </div>
@@ -57,6 +65,10 @@ export default defineComponent({
     listData: {
       type: Array,
       required: true,
+    },
+    listCount: {
+      type: Number,
+      default: 0,
     },
     title: {
       type: String,
@@ -74,14 +86,38 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    childrenProps: {
+      type: Object,
+      default: () => {},
+    },
+    showFooter: {
+      type: Boolean,
+      default: true,
+    },
+    page: {
+      type: Object,
+      default: () => ({ currentPage: 0, pageSize: 10 }),
+    },
   },
-  emits: ["selectionChange"],
+  emits: ["selectionChange", "update:page"],
   setup(props, { emit }) {
     const handleSelectionChange = (value: any) => {
       emit("selectionChange", value);
     };
+
+    // 分页功能
+    const handleSizeChange = (currentPage: number) => {
+      emit("update:page", { ...props.page, currentPage });
+    };
+
+    const handleCurrentChange = (pageSize: number) => {
+      emit("update:page", { ...props.page, pageSize });
+    };
+
     return {
       handleSelectionChange,
+      handleSizeChange,
+      handleCurrentChange,
     };
   },
 });
@@ -111,5 +147,11 @@ export default defineComponent({
 
 .footer {
   margin-top: 15px;
+  // display: flex;
+  .el-pagination {
+    text-align: center;
+    margin-left:800px;
+
+  }
 }
 </style>

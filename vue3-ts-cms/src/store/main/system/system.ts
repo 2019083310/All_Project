@@ -12,7 +12,11 @@ export const systemModule:Module<ISystemState,IRootState>={
       usersList:[],
       usersCount:0,
       roleCount:0,
-      roleList:[]
+      roleList:[],
+      goodsCount:0,
+      goodsList:[],
+      menuCount:0,
+      menuList:[]
     }
   },
   mutations:{
@@ -27,6 +31,18 @@ export const systemModule:Module<ISystemState,IRootState>={
     },
     changeRoleCount(state,payLoad:number){
       state.roleCount=payLoad
+    },
+    changeGoodsList(state,payLoad:any[]){
+      state.goodsList=payLoad
+    },
+    changeGoodsCount(state,payLoad:number){
+      state.goodsCount=payLoad
+    },
+    changeMenuList(state,payLoad:any[]){
+      state.menuList=payLoad
+    },
+    changeMenuCount(state,payLoad:number){
+      state.menuCount=payLoad
     }
   },
   actions:{
@@ -44,14 +60,12 @@ export const systemModule:Module<ISystemState,IRootState>={
 
       // 3.发起请求
       const pageListResult=await requestData({
-        method:'post',
+        method:'POST',
         url:`/${pageName}/list`,
         headers:{
           Authorization:`Bearer ${value}`
         },
-        data:{
-          ...payLoad.queryInfo
-        }
+        data:payLoad.queryInfo
       })
 
       // 4.存储数据到state中
@@ -66,6 +80,11 @@ export const systemModule:Module<ISystemState,IRootState>={
     pageListData(state){
       return (pageName:string)=>{
         return (state as any)[`${pageName}List`]
+      }
+    },
+    pageListCount(state){
+      return (pageName:string)=>{
+        return (state as any)[`${pageName}Count`]
       }
     }
   }

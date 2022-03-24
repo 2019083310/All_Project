@@ -7,7 +7,7 @@ import {ILoginState} from './type'
 import { loginAccountRequest } from '@/network/login/login'
 import router from '@/router'
 
-import {MapMenusToRoutes} from '../../utils/mapRouter'
+import {MapMenusToRoutes,mapMenusToPermissions} from '../../utils/mapRouter'
 
 export const loginModule:Module<ILoginState,IRootState>={
   namespaced:true,
@@ -15,7 +15,8 @@ export const loginModule:Module<ILoginState,IRootState>={
     return {
       token:'',
       userInfo:{},
-      userMenus:[]
+      userMenus:[],
+      permissions:[]
     }
   },
   getters:{},
@@ -90,6 +91,10 @@ export const loginModule:Module<ILoginState,IRootState>={
       routes.forEach(route=>{
         router.addRoute('main',route)
       })
+
+      // 获取页面按钮权限
+      const permissions=mapMenusToPermissions(payLoad)
+      state.permissions=permissions
     }
   }
 }

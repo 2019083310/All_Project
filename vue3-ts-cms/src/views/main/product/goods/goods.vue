@@ -1,18 +1,41 @@
 <template>
   <div class="goods">
-    <h2>goods</h2>
+    <page-content :contentTableConfig="contentTableConfig" pageName="goods">
+      <template #oldPrice="scope">
+        {{ "￥" + scope.row.oldPrice }}
+      </template>
+      <template #newPrice="scope">
+        {{ "￥" + scope.row.newPrice }}
+      </template>
+      <template #image="scope">
+        <el-image
+          style="width: 60px; height: 60px"
+          :src="scope.row.imgUrl"
+          :preview-src-list="[scope.row.imgUrl]"
+          preview-teleported
+        />
+      </template>
+    </page-content>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
+
+import pageContent from "../../../../components/pagecontent/pageContent.vue";
+import { contentTableConfig } from "./config/content.config";
 
 export default defineComponent({
-  name: 'goods',
+  name: "goods",
+  components: {
+    pageContent,
+  },
   setup() {
-    return {}
-  }
-})
+    return {
+      contentTableConfig,
+    };
+  },
+});
 </script>
 
 <style scoped></style>

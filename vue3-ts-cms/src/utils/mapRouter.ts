@@ -82,3 +82,22 @@ export function pathToMenu(userMenus:any[],currentPath:string,breadcrumb?:IBread
 //     }
 //   }
 // }
+
+// 获取页面的按钮权限
+export function mapMenusToPermissions(userMenus:any[]){
+  const permissions:string[]=[]
+
+  // 递归获取
+  const _recurseGetPermission=(menus:any[])=>{
+    for(const menu of menus){
+      if(menu.type===1||menu.type===2){
+        _recurseGetPermission(menu.children??[])
+      }else if(menu.type===3){
+        permissions.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+
+  return permissions
+}

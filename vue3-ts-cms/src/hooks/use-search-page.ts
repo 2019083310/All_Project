@@ -1,18 +1,15 @@
-import {ref,onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
 
 import pageContent from '../components/pageSearch/pageSearch.vue'
 
-export function useSearchPage(){
-  const pageContentRef=ref()
-  onMounted(()=>{
-    console.log(pageContentRef.value)
-  })
-  const handleResetClick=()=>{
+export function useSearchPage() {
+  const pageContentRef = ref()
+
+  const handleResetClick = () => {
     pageContentRef.value?.getPageData()
   }
-  const handleSearchClick=(queryInfo:any)=>{
+  const handleSearchClick = (queryInfo: any) => {
     pageContentRef.value?.getPageData(queryInfo)
   }
-
-  return [pageContentRef,handleResetClick,handleSearchClick]
+  return [pageContentRef, handleResetClick, handleSearchClick]
 }

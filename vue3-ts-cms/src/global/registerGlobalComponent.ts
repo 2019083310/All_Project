@@ -27,9 +27,10 @@ import {
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
+  ElImage,
+  ElPagination
 } from 'element-plus'
 import { App } from 'vue'
-import { ElPagination } from 'element-plus/lib/components'
 
 const components = [
   ElFormItem,
@@ -57,7 +58,8 @@ const components = [
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 ]
 
 export function registerGlobalComponent(app: App) {
