@@ -98,7 +98,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .category-nav-bar {
     font-weight: 600;
     color: white;

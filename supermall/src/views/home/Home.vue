@@ -134,7 +134,7 @@
 
 </script>
 
-<style>
+<style scoped>
    #home {
     /* 因为导航栏脱离标准流， */
     padding-top: 44px;
