@@ -39,7 +39,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .goods-item {
     padding-bottom: 10px;
     position: relative;

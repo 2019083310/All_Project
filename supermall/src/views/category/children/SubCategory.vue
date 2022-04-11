@@ -22,7 +22,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .category-detail {
     display: flex;
     flex-wrap: wrap;

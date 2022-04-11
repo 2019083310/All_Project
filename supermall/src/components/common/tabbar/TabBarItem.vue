@@ -15,11 +15,6 @@
 <script>
   export default {
     name: 'TabBarItem',
-    data() {
-      return {
-
-      }
-    },
     props: {
       path:String,
       activeColor: {
@@ -44,7 +39,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .tab-bar-item {
     flex: 1;
     text-align: center;

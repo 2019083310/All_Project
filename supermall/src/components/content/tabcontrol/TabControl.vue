@@ -15,8 +15,6 @@
         currentIndex:0
       }
     },
-    computed:{
-    },
     methods: {
       itemClick(index){
         this.currentIndex=index;
@@ -27,7 +25,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .tab-control{
     display: flex;
     text-align: center;

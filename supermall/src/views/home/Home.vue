@@ -66,9 +66,6 @@
       Scroll,
       BackTop
     },
-    destroyed() {
-      console.log('home destroyed');
-    },
     activated() {
       this.$refs.scroll.scrollTo(0, this.saveY, 0)
       this.$refs.scroll.refresh()
@@ -107,7 +104,7 @@
         }
       },
       backClick(){
-        console.log('backClick')
+        // console.log('backClick')
         this.$refs.scroll.scrollTo(0,0)
       },
       contentScroll(position){

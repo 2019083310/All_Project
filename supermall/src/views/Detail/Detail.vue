@@ -68,8 +68,9 @@
     created() {
       //1.保存传入的id
       this.iid = this.$route.params.id;
+      // console.log(this.$route)
       getDetail(this.iid).then(res => {
-        console.log(res)
+        // console.log(res)
         const data = res.result
         this.topImages = data.itemInfo.topImages
         //获取商品信息
@@ -107,11 +108,11 @@
         // Array.from() 将伪数组转换成纯数组
         // this.detailClassList = [];
         this.detailClassList = Array.from(document.getElementsByClassName("detail-set-scroll"));
-        let maxValue = 10000000;
+        let maxValue = 1000;
         this.detailClassList.push({
           offsetTop: maxValue
         });
-        console.log(this.detailClassList);
+        // console.log(this.detailClassList);
       },
       // 监听详情页滚动事件,并动态设置navBar的index
       detailScroll(position) {
@@ -119,8 +120,8 @@
         this.curPosition = detailPosition
         for (let i = 0; i < this.detailClassList.length - 1; i++) {
           if (
-            detailPosition >= this.detailClassList[i].offsetTop &&
-            detailPosition < this.detailClassList[i + 1].offsetTop
+            this.curPosition >= this.detailClassList[i].offsetTop &&
+            this.curPosition < this.detailClassList[i + 1].offsetTop
           ) {
             if (this.detailIndex !== i) {
               this.detailIndex = i;

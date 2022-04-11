@@ -59,11 +59,11 @@
     computed: {
       ...mapGetters(["cartList", "cartListLength"]),
       // 购物车总价
-      totalPrice() {
-        return '￥'+this.cartList
-          .filter(item => item.checked)
-          .reduce((prev, item) => prev + item.price* item.count, 0)
-          .toFixed(2);
+      totalPrice(getters) {
+        return '￥'+(getters.cartList
+          .filter(item => item.checked))
+          .reduce((prev, item) => prev + Number(item.price.slice(1))* item.count, 0)
+          // .toFixed(2));
       },
       checkedLength() {
         return this.cartList.filter(item => item.checked).length;
@@ -74,8 +74,8 @@
       // 全选
       handleCheckedAll() {
         this.cartList.forEach(item => (item.checked = this.checkedAll));
-        console.log(this.totalPrice)
-        console.log(this.cartList)
+        // console.log(this.totalPrice)
+        // console.log(this.cartList)
       },
       // 反选
       handleCheckedItem() {
