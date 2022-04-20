@@ -15,8 +15,6 @@ import {
 import { useRoleStore } from './role'
 import { useDepartmentStore } from './department'
 
-// import { userInfo } from "node:os";
-
 interface UserState {
   token?: string
   userInfo?: UserInfo
@@ -33,7 +31,7 @@ export function setupUser() {
 
   // 设置userInfo
   const user = JSON.parse(localCahce.getCache(USER_INFO_KEY) || '{}')
-  console.log('user=', user)
+  // console.log('user=', user)
   user && userStore.setUserInfo(user)
 
   // 设置 userMenus
@@ -92,7 +90,7 @@ export const useUserStore = defineStore({
     async login(params: LoginParams) {
       // 获取token
       const { id, token } = await logingService.login(params)
-      console.log(token)
+      // console.log(token)
       this.setToken(token)
 
       // 获取userInfo
@@ -112,7 +110,7 @@ export const useUserStore = defineStore({
 
       // 跳转到第一个菜单
       const firstMenuPath = getFirstMenuPath(userMenus)
-      console.log('firstMenuPath=', firstMenuPath)
+      // console.log('firstMenuPath=', firstMenuPath)
       if (firstMenuPath) {
         router.push(firstMenuPath)
       } else {

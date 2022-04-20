@@ -4,7 +4,8 @@
     <el-form :model="accountData" :rules="loginRules"
       ><el-tabs v-model="activeTabName" stretch
         ><el-tab-pane label="账号密码登录" name="first"
-          ><el-form-item prop="name"><el-input v-model="accountData.name"></el-input></el-form-item
+          ><el-form-item prop="name"
+            ><el-input v-model="accountData.name"></el-input></el-form-item
           ><el-form-item prop="password"
             ><el-input
               v-model="accountData.password"
@@ -44,11 +45,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
-import { ElForm, ElFormItem, ElInput, ElTabs, ElButton } from 'element-plus'
+import { defineComponent, reactive, ref } from "vue";
+import { ElForm, ElFormItem, ElInput, ElTabs, ElButton } from "element-plus";
 
 // import { login } from "/@/service/api/user";
-import { useUserStore } from '/@/store/modules/user'
+import { useUserStore } from "/@/store/modules/user";
 
 export default defineComponent({
   components: {
@@ -56,36 +57,36 @@ export default defineComponent({
     ElFormItem,
     ElInput,
     ElTabs,
-    ElButton
+    ElButton,
   },
   setup() {
     const accountData = reactive({
-      name: 'coderwhy',
-      password: '123456'
-    })
+      name: "coderwhy",
+      password: "123456",
+    });
     const phoneData = reactive({
       phoneNum: undefined,
-      verifyCode: undefined
-    })
-    const activeTabName = ref('first')
-    const isRemember = ref(true)
+      verifyCode: undefined,
+    });
+    const activeTabName = ref("first");
+    const isRemember = ref(true);
 
     const loginRules = {
-      name: [{ required: true, message: '请输入账号~', trigger: 'change' }],
-      password: [{ required: true, message: '请输入密码~', triiger: 'change' }]
-    }
+      name: [{ required: true, message: "请输入账号~", trigger: "change" }],
+      password: [{ required: true, message: "请输入密码~", triiger: "change" }],
+    };
 
-    const userStore = useUserStore()
+    const userStore = useUserStore();
 
     async function loginAction() {
-      const result = await userStore.login(accountData)
-      console.log(userStore.$state.token)
-      console.log('loginAction')
+      const result = await userStore.login(accountData);
+      // console.log(userStore.$state.token);
+      // console.log("loginAction");
     }
 
     function resetAction() {
-      accountData.name = ''
-      accountData.password = ''
+      accountData.name = "";
+      accountData.password = "";
     }
 
     return {
@@ -95,10 +96,10 @@ export default defineComponent({
       loginRules,
       loginAction,
       resetAction,
-      activeTabName
-    }
-  }
-})
+      activeTabName,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>

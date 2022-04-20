@@ -7,7 +7,7 @@ const pathResolve = (dirPath) => path.resolve(process.cwd(), dirPath)
 
 // https://vitejs.dev/config/
 export default ({ command }) => {
-  console.log('command=', command)
+  // console.log('command=', command)
   const isBuild = command === 'build' // command = serve or build
   return defineConfig({
     plugins: [vue(), ...createVitePlugins(isBuild)],

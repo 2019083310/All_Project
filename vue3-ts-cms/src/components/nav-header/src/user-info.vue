@@ -3,13 +3,13 @@
     <el-dropdown @command="handleDropDownClick">
       <span class="el-dropdown-link">
         <el-avatar :size="30" :src="circleUrl"></el-avatar>
-        <span class="name">{{ userInfo.name }}</span>
+        <span class="name">coderLiu</span>
       </span>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item command="退出系统">退出系统</el-dropdown-item>
-          <!-- <el-dropdown-item>个人中心</el-dropdown-item> -->
-          <!-- <el-dropdown-item>修改密码</el-dropdown-item> -->
+          <el-dropdown-item>个人中心</el-dropdown-item>
+          <el-dropdown-item>修改密码</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>

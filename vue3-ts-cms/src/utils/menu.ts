@@ -2,7 +2,6 @@ import type { UserMenu } from '/@/service/types'
 import type { BreadcrumbProp } from '/@/base-ui/menu-guide'
 /**
  * 获取按钮权限
- * @param userMenus
  */
 export const getUserPermissins = (userMenus: UserMenu[]): string[] => {
   const permissions: string[] = []
@@ -12,7 +11,6 @@ export const getUserPermissins = (userMenus: UserMenu[]): string[] => {
 
 /**
  * 获取用户菜单权限
- * @param userMenus
  */
 export const getUserMenus = (userMenus: UserMenu[]): UserMenu[] => {
   const menus = [...userMenus] // 备份（纯函数）
@@ -22,7 +20,6 @@ export const getUserMenus = (userMenus: UserMenu[]): UserMenu[] => {
 
 /**
  * 获取第一个菜单
- * @param userMenus
  */
 export const getFirstMenuPath = (userMenus: UserMenu[]): string => {
   const firstMenu = _recursiveGetFirstMenu(userMenus)
@@ -32,7 +29,6 @@ export const getFirstMenuPath = (userMenus: UserMenu[]): string => {
 
 /**
  * 获取菜单
- * @param userMenus
  */
 export const getMenuByPath = (userMenus: UserMenu[], pathName: string): UserMenu | void => {
   const currentMenu = _recursiveMenuByPath(userMenus, pathName)
@@ -41,7 +37,6 @@ export const getMenuByPath = (userMenus: UserMenu[], pathName: string): UserMenu
 
 /**
  * 获取菜单
- * @param userMenus
  */
 export const getBreadcrumbsByPath = (userMenus: UserMenu[], pathName: string): BreadcrumbProp[] => {
   const breadcrumbs: BreadcrumbProp[] = []
@@ -51,8 +46,6 @@ export const getBreadcrumbsByPath = (userMenus: UserMenu[], pathName: string): B
 
 /**
  * 递归菜单树 获取按钮权限
- * @param menus
- * @param resultPremission
  */
 const _recursiveGetPermission = (menus: UserMenu[], resultPremission: string[]) => {
   menus.forEach((menu: UserMenu, index: number) => {
@@ -74,7 +67,6 @@ const _recursiveGetPermission = (menus: UserMenu[], resultPremission: string[]) 
 
 /**
  * 递归 - 删除按钮权限
- * @param menus
  */
 const _recursiveDeleteBtnPermission = (menus: UserMenu[]): void => {
   for (let i = 0; i < menus.length; i++) {
@@ -96,7 +88,6 @@ const _recursiveDeleteBtnPermission = (menus: UserMenu[]): void => {
 }
 /**
  * 递归菜单树 获取第一个菜单
- * @param menus
  */
 const _recursiveGetFirstMenu = (menus: UserMenu[]): UserMenu | void => {
   for (let i = 0; i < menus.length; i++) {
@@ -116,9 +107,6 @@ const _recursiveGetFirstMenu = (menus: UserMenu[]): UserMenu | void => {
 
 /**
  * 根据路径获取菜单
- * @param menus
- * @param pathName
- * @returns
  */
 const _recursiveMenuByPath = (menus: UserMenu[], pathName: string): UserMenu | void => {
   for (let i = 0; i < menus.length; i++) {
@@ -138,10 +126,6 @@ const _recursiveMenuByPath = (menus: UserMenu[], pathName: string): UserMenu | v
 
 /**
  * 递归获取 面包屑
- * @param menus
- * @param pathName
- * @param breadcrumbs
- * @returns
  */
 const _recursiveGetReadcrumbsByPath = (
   menus: UserMenu[],
