@@ -1,0 +1,17 @@
+<!--components/men-list-v1/index.wxml-->
+<wxs src='../../utils/format.wxs' module="format"></wxs>
+<view class="menu-item">
+	<view class="left">
+		<view class="name">{{lists.name}}</view>
+		<block wx:for='{{lists.list}}' wx:key='id'>
+			<view class="music-name">
+				<text class="text">{{index+1}}. {{item.name}} - </text>
+				<text class="title">{{item.ar[0].name}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="right">
+		<image src='{{lists.coverImgUrl}}' mode='widthFix' class="point"></image>
+		<view class="count">{{format.formatCount(lists.playCount)}}</view>
+	</view>
+</view>

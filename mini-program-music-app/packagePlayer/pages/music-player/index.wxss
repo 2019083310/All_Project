@@ -1,0 +1,146 @@
+/* pages/music-player/index.wxss */
+page {
+	color: #eee;
+}
+
+.bg-image,
+.cover {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.cover {
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(40px);
+}
+
+.center-msg {
+	display: flex;
+	justify-content: center;
+}
+
+.center-msg .icon {
+	padding: 0 20rpx;
+}
+
+.active {
+	color: rgb(42, 194, 37);
+}
+
+.swp {
+	width: 100%;
+}
+
+/* swiper1的适配布局 */
+.music {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 30rpx 60rpx;
+	box-sizing: border-box;
+}
+
+/* 上部图片 */
+.top-pic {
+	flex: 5;
+}
+
+.pic {
+	width: 100%;
+	height: 100%;
+}
+
+/* 歌曲信息 */
+.info {
+	margin-top: 15rpx;
+}
+
+.title {
+	font-size: 40rpx;
+	font-weight: 700;
+}
+
+.msg {
+	margin-top: 10rpx;
+	font-size: 25rpx;
+	color: #ccc;
+}
+
+.msg .net {
+	margin-top: 15rpx;
+}
+
+/* 歌词 */
+.music .lyrics {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	color: rgb(42, 194, 37);
+}
+
+/* 进度条 */
+.progress {
+	margin-top: 10rpx;
+}
+
+.time {
+	display: flex;
+	justify-content: space-between;
+	font-size: 20rpx;
+}
+
+/* 底部按钮 */
+.btns {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.order,
+.list {
+	width: 80rpx;
+	height: 80rpx;
+}
+
+.prev,
+.next {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.resume {
+	width: 130rpx;
+	height: 130rpx;
+}
+
+/* 歌词 */
+/* .lyric{
+
+} */
+/* .lyric {} */
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.lyric-text {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

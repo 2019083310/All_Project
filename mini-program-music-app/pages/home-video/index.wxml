@@ -1,0 +1,6 @@
+<!--pages/home-video/index.wxml-->
+<view class="home-video">
+  <view wx:for='{{topMvs}}' wx:key='id'>
+    <video-item-v1 item="{{item}}" bindtap='handleItemVideoClick' data-item='{{item}}'></video-item-v1>
+  </view>
+</view>

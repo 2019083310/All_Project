@@ -1,0 +1,23 @@
+<!--base-ui/nav-bar/imdex.wxml-->
+<view class="nav">
+	<view style="height:{{statusBarHeight}}px"></view>
+	<view class="nav-bar">
+		<view class="left">
+			<view class="left-slot">
+				<slot name='left'></slot>
+			</view>
+			<view class="left-arrow" bindtap='handleItemClick'>
+				<image src='/assets/images/icons/arrow-left.png' mode='widthFix' class="pic"></image>
+			</view>
+		</view>
+		<view class="center">
+			<view class="center-slot">
+				<slot name='center'></slot>
+			</view>
+			<view class="center-msg">
+				{{title}}
+			</view>
+		</view>
+		<view class="right"></view>
+	</view>
+</view>

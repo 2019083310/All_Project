@@ -1,0 +1,40 @@
+/* components/nav-header/index.wxss */
+.header {
+    display: flex;
+    width: 100%;
+    margin-top: 10rpx;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+}
+
+.header .left {
+    width: 350px;
+    font-size: 38rpx;
+    font-weight: bold;
+}
+
+.header .empty {
+    width: 20%;
+}
+
+.header .empty:empty+.default {
+    display: flex;
+}
+
+.default {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.default .text {
+    width: 75rpx;
+    text-align: center;
+}
+
+.default .icon {
+    width: 50rpx;
+    align-items: center;
+}

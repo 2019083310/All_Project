@@ -1,0 +1,38 @@
+<!--pages/page-search/index.wxml-->
+<!-- 1-搜索框 -->
+<van-search shape='round' placeholder='快来输入你喜欢的音乐把~' bind:change='handleSearchChange' value='{{serachValue}}' show-action='{{serachValue.length>0}}' bind:search='handleSearchEnter' background="#f7f7f7"></van-search>
+
+<!-- 2-热搜关键词 -->
+<area-header showRight='{{false}}' title='热门搜索' wx:if='{{!serachValueList.length&&!serachValue.length}}'></area-header>
+<view class="wrap" wx:if='{{!serachValueList.length&&!serachValue.length}}'>
+    <block wx:for='{{searchKeyList}}' wx:key='first'>
+        <view class="key" bindtap='handleKeywordClick' data-keyword='{{item.first}}'>{{item.first}}</view>
+    </block>
+</view>
+
+<!-- 3.热搜推荐 -->
+<view class="suggest" wx:elif='{{serachValueList.length&&!resultSongs.length}}'>
+    <view class="header">搜索'{{serachValue}}'</view>
+    <block wx:for='{{serachValueList}}' wx:key='keyword'>
+        <view class="suggest-item" bindtap='handleKeywordClick' data-keyword="{{item.keyword}}">
+            <image src='/assets/images/icons/search_icon.png' mode='widthFix' class="point"></image>
+            <!-- <text class="text">{{item.keyword}}</text> -->
+            <rich-text nodes="{{searchValueNodes[index]}}"></rich-text>
+        </view>
+    </block>
+</view>
+
+<!-- 4.搜索结果 -->
+<view class="sug-res" wx:elif='{{resultSongs.length}}'>
+    <view class="best-search">最佳匹配</view>
+    <block wx:for='{{resultSongs}}' wx:key='id'>
+        <view class="song-menu" bindtap='handleItemClick' data-id='{{item.id}}' data-index='{{index}}'>
+            <view class="seg">{{index+1}}</view>
+            <view class="info">
+                <view class="name">{{item.name}}</view>
+                <image class="icon" src="/assets/images/icons/sq_icon.png" mode="widthFix"></image>
+                <view class="msg">{{item.artists[0].name}} {{item.alias[0].name}}</view>
+            </view>
+        </view>
+    </block>
+</view>

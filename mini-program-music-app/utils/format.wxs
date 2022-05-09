@@ -1,0 +1,35 @@
+function formatCount(count) {
+  var counter = parseInt(count);
+
+  if (counter > 100000000) {
+    return (counter / 100000000).toFixed(1) + "亿";
+  } else if (counter > 10000) {
+    return (counter / 10000).toFixed(2) + "万";
+  } else {
+    return counter + "";
+  }
+}
+
+function formatDuration(duration) {
+  var duration = parseInt(duration) / 1000;
+
+  // minute
+  var minute = Math.floor(duration / 60);
+  if (minute > 60) {
+    var hours = Math.floor(minute / 60);
+    minute = minute - hours * 60;
+  }
+  // second
+  var second = Math.floor(duration % 60);
+
+  if (hours > 0) {
+    return hours + ":" + minute + ":" + second;
+  } else {
+    return "0" + minute + ":" + second;
+  }
+}
+
+module.exports = {
+  formatCount: formatCount,
+  formatDuration: formatDuration,
+};

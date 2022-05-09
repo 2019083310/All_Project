@@ -1,0 +1,52 @@
+/* components/men-list-v1/index.wxss */
+.menu-item {
+	display: flex;
+	width: 100%;
+	margin-top: 20rpx;
+	justify-content: space-between;
+	background-color: rgb(247, 247, 247);
+	border-radius: 10rpx;
+	border: 0.5rpx solid #eee;
+	padding: 20rpx 0;
+}
+
+.left {
+	margin-left: 20rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: left;
+}
+
+.left .name {
+	font-size: 36rpx;
+	font-weight: bold;
+}
+
+.left .text {
+	font-size: 30rpx;
+	color: #333;
+}
+
+.left .title {
+	font-size: 30rpx;
+	color: rgb(197, 195, 195) !important;
+}
+
+.right {
+	position: relative;
+}
+
+.right .point {
+	width: 200rpx;
+	border-radius: 10rpx;
+}
+
+.right .count {
+	position: absolute;
+	right: 10rpx;
+	bottom: 10rpx;
+	font-size: 30rpx;
+	color: #eee;
+	/* background-color: rgb(199, 199, 63); */
+}

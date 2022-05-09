@@ -1,0 +1,17 @@
+<!--components/song-item-v1/index.wxml-->
+<view class="song-item">
+    <block wx:for='{{musicList}}' wx:key='id'>
+        <view class="item" bindtap='handleItemClick' data-id='{{item.id}}' data-index='{{index}}'>
+            <view class="wrap">
+                <image src='{{item.al.picUrl}}' mode='widthFix' class="list"></image>
+            </view>
+            <view class="info">
+                <view class="name">{{item.name}}</view>
+                <view class="title">{{item.ar[0].name}}-{{item.name}}</view>
+            </view>
+            <view class="left">
+                <image src='/assets/images/icons/arrow-right.png' class="leftM" mode="widthFix"></image>
+            </view>
+        </view>
+    </block>
+</view>

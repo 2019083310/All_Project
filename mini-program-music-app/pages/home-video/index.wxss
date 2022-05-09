@@ -1,0 +1,7 @@
+/* pages/home-video/index.wxss */
+.home-video {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+

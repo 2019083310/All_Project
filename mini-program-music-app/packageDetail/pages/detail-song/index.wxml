@@ -1,0 +1,64 @@
+<!--pages/detail-song/index.wxml-->
+<wxs src='../../../utils/format.wxs' module='format'></wxs>
+<view class='title'>{{rankings.name}}</view>
+<block wx:for='{{rankings.tracks}}' wx:key='id'>
+    <view class="song-menu" bindtap='handleItemClick' data-id='{{item.id}}' data-index='{{index}}'>
+        <view class="seg">{{index+1}}</view>
+        <view class="info">
+            <view class="name">{{item.name}}</view>
+            <image class="icon" src="/assets/images/icons/sq_icon.png" mode="widthFix"></image>
+            <view class="msg">{{item.ar[0].name}} {{item.al.name}}</view>
+        </view>
+    </view>
+</block>
+<view class="title" wx:if='{{flag}}'>热门推荐</view>
+
+<!-- <view class="text-title">{{songInfo.name}}</view> -->
+<block wx:if='{{type==="menu"}}'>
+    <view class="header">
+        <image src='{{songInfo.coverImgUrl}}' mode='aspectFill' class="head"></image>
+        <view class="back"></view>
+        <view class="content">
+            <view class='nav'>
+                <image src='{{songInfo.coverImgUrl}}' mode="widthFix" class="point"></image>
+            </view>
+            <view class="info">
+                <view>{{songInfo.name}}</view>
+                <image src='{{songInfo.creator.avatarUrl}}' mode='widthFix' class="avator"></image>
+                <view class="dest">-{{songInfo.creator.nickname}}</view>
+                <view class="des">简介:{{songInfo.description}}</view>
+            </view>
+        </view>
+        <view class="foot">
+            <view class="favor">
+                <image src='/assets/images/icons/favor_icon.png' mode='widthFix' class="icons"></image>
+                <view class="count">{{format.formatCount(songInfo.playCount)}}</view>
+            </view>
+            <view class="share">
+                <image src='/assets/images/icons/share_icon.png' mode='widthFix' class="icons"></image>
+                <view class="msgs">分享</view>
+            </view>
+        </view>
+    </view>
+</block>
+
+<block wx:for='{{rankings}}' wx:key='id' wx:if='{{type==="menu"}}'>
+    <view class="song-menu" bindtap='handleItemClick' data-id='{{item.id}}' data-index='{{index}}'>
+        <view class="seg">{{index+1}}</view>
+        <view class="info">
+            <view class="name">{{item.name}}</view>
+            <image class="icon" src="/assets/images/icons/sq_icon.png" mode="widthFix"></image>
+            <view class="msg">{{item.ar[0].name}} {{item.al.name}}</view>
+        </view>
+    </view>
+</block>
+<block wx:for='{{rankings}}' wx:key='id' wx:if='{{flag}}'>
+    <view class="song-menu" bindtap='handleItemClick' data-id='{{item.id}}' data-index='{{index}}'>
+        <view class="seg">{{index+1}}</view>
+        <view class="info">
+            <view class="name">{{item.name}}</view>
+            <image class="icon" src="/assets/images/icons/sq_icon.png" mode="widthFix"></image>
+            <view class="msg">{{item.ar[0].name}} {{item.al.name}}</view>
+        </view>
+    </view>
+</block>

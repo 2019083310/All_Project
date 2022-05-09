@@ -1,0 +1,15 @@
+<!--components/video-item-v1/index.wxml-->
+<wxs src='../../utils/format.wxs' module='format'></wxs>
+<view class="item">
+	<view class="album">
+		<image src="{{item.cover}}" mode="widthFix" class="paint"></image>
+		<view class="info">
+			<view class="count">{{format.formatCount(item.playCount)}}</view>
+			<view class="time">{{format.formatDuration(item.mv.videos[0].duration)}}</view>
+		</view>
+	</view>
+	<view class="content">
+		{{item.name}}-{{item.artistName}}
+	</view>
+</view>
+<!-- 说明一下:this.setData()是一个同步方法，也就是在设置值之后，data中的数据会立马更新，但是wxml的渲染机制是异步的。而react中的this.setstate是异步的，渲染页面更新也是异步的。同步立即更新data中的数据的不好的地方就在于，如果当前数据还要传递给子组件，那么这时候可能会造成子组件拿不到父组件立即更新后的数据，造成调试错误，而react正是解决了这样的问题。 -->

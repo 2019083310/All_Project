@@ -1,0 +1,39 @@
+/* base-ui/nav-bar/imdex.wxss */
+.nav-bar {
+	display: flex;
+	height: 44px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.left,
+.right {
+	width: 150rpx;
+}
+
+.left-arrow {
+	display: none;
+}
+
+.left-slot:empty+.left-arrow {
+	display: block;
+}
+
+.left-arrow .pic {
+	width: 44rpx;
+	margin-top: 10rpx;
+}
+
+.center {
+	flex: 1;
+}
+
+.center-slot:empty+.center-msg {
+	display: block;
+}
+
+
+.center-msg {
+	display: none;
+}
