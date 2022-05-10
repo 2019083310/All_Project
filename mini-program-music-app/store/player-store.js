@@ -114,6 +114,7 @@ const playerStore = new HYEventStore({
         audioContext.src = `https://music.163.com/song/media/outer/url?id=${ctx.id}.mp3`;
         audioContext.title = ctx.currentSong.name;
         ctx.isStoping = false;
+        audioContext.startTime = ctx.currentTime / 1000;
       }
       if (ctx.playing) {
         audioContext.play();
